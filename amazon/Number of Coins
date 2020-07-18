@@ -1,0 +1,37 @@
+#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+	//code
+	int t;
+	cin>>t;
+	while(t--){
+	    int a,b;
+	    cin>>a>>b;
+	    int arr[b];
+	    for(int i=0;i<b;i++){
+	        cin>>arr[i];
+	    }
+	    int count[a+1];
+	    count[0]=0;
+	    for(int i=1;i<a+1;i++){
+	        count[i]=INT_MAX;
+	    }
+	    count[0]=0;
+	    for(int i=0;i<b;i++){
+	        for(int j=1;j<a+1;j++){
+	            if(j>=arr[i]){
+	                count[j]=min(count[j],count[j-arr[i]]==INT_MAX?count[j-arr[i]]:count[j-arr[i]]+1);
+	            }
+	        }
+	    }
+	    if(count[a]!=INT_MAX){
+	        cout<<count[a]<<endl;
+	    }
+	    else{
+	        cout<<"-1"<<endl;
+	    }
+	    
+	}
+	return 0;
+}
